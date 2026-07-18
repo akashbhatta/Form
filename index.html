@@ -11,10 +11,10 @@
   <div class="page">
 
     <!-- Progress indicator -->
-    <div class="progress-track" id="progressTrack" aria-hidden="true">
-      <div class="progress-step active" data-step="1">Consent</div>
-      <div class="progress-step" data-step="2">Background</div>
-      <div class="progress-step" data-step="3">Questionnaire</div>
+    <div class="progress-track" id="progressTrack" aria-label="Form sections">
+      <button type="button" class="progress-step active" data-step-target="consent">Consent</button>
+      <button type="button" class="progress-step" data-step-target="demographics">Background</button>
+      <button type="button" class="progress-step" data-step-target="mhls">Questionnaire</button>
     </div>
 
     <!-- ============ STEP 1: CONSENT ============ -->
@@ -177,7 +177,10 @@
           <input type="text" id="mh_illness_experience_specify" name="mh_illness_experience_specify" />
         </div>
 
-        <button type="button" id="toQuestionnaireBtn" class="btn-primary">Continue</button>
+        <div class="form-actions">
+          <button type="button" id="demographicsBackBtn" class="btn-secondary">Back</button>
+          <button type="button" id="toQuestionnaireBtn" class="btn-primary">Continue</button>
+        </div>
       </form>
     </section>
 
@@ -192,7 +195,10 @@
       <form id="mhlsForm" novalidate>
         <div id="mhlsQuestionList"><!-- populated by script.js from mhls-questions.js --></div>
 
-        <button type="submit" id="submitBtn" class="btn-primary">Submit</button>
+        <div class="form-actions">
+          <button type="button" id="mhlsBackBtn" class="btn-secondary">Back</button>
+          <button type="submit" id="submitBtn" class="btn-primary">Submit</button>
+        </div>
         <p class="submit-error hidden" id="submitError">
           Please answer all questions before submitting.
         </p>

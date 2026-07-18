@@ -24,6 +24,12 @@
   };
   const progressSteps = document.querySelectorAll(".progress-step");
   const statusBanner = document.getElementById("statusBanner");
+  const stepProgressMap = {
+    consent: 1,
+    demographics: 2,
+    mhls: 3,
+    thankyou: 4
+  };
 
   function showStep(stepKey, progressIndex) {
     Object.values(steps).forEach(el => el.classList.add("hidden"));
@@ -33,11 +39,20 @@
     if (progressIndex) {
       progressSteps.forEach((el, i) => {
         el.classList.toggle("active", i < progressIndex);
+        el.setAttribute("aria-current", i === progressIndex - 1 ? "step" : "false");
       });
+      document.getElementById("progressTrack").classList.remove("hidden");
     } else {
       document.getElementById("progressTrack").classList.add("hidden");
     }
   }
+
+  progressSteps.forEach(stepEl => {
+    stepEl.addEventListener("click", () => {
+      const stepKey = stepEl.dataset.stepTarget;
+      showStep(stepKey, stepProgressMap[stepKey]);
+    });
+  });
 
   function showBanner(message, isError) {
     statusBanner.textContent = message;
@@ -75,6 +90,7 @@
   // ---- STEP 2: Demographics --------------------------------------------
   const demographicsForm = document.getElementById("demographicsForm");
   const toQuestionnaireBtn = document.getElementById("toQuestionnaireBtn");
+  const demographicsBackBtn = document.getElementById("demographicsBackBtn");
 
   // Show/hide "please specify" follow-up fields
   const genderSelect = document.getElementById("gender");
@@ -110,6 +126,10 @@
     showStep("mhls", 3);
   });
 
+  demographicsBackBtn.addEventListener("click", () => {
+    showStep("consent", 1);
+  });
+
   // ---- STEP 3: Render MHLS questions ------------------------------------
   const mhlsListEl = document.getElementById("mhlsQuestionList");
 
@@ -118,7 +138,7 @@
       const optionsHtml = q.scale.map(opt => `
         <label class="likert-option" data-question="${q.id}" data-value="${opt.value}">
           <input type="radio" name="${q.id}" value="${opt.value}" required />
-          ${opt.label}
+          <span>${opt.label}</span>
         </label>
       `).join("");
 
@@ -133,15 +153,12 @@
 
     mhlsListEl.innerHTML = html;
 
-    // Click-to-select styling (radio input stays the source of truth)
-    mhlsListEl.querySelectorAll(".likert-option").forEach(optionEl => {
-      optionEl.addEventListener("click", () => {
-        const questionId = optionEl.dataset.question;
+    mhlsListEl.querySelectorAll('.likert-option input[type="radio"]').forEach(inputEl => {
+      inputEl.addEventListener("change", () => {
         mhlsListEl
-          .querySelectorAll(`.likert-option[data-question="${questionId}"]`)
+          .querySelectorAll(`.likert-option[data-question="${inputEl.name}"]`)
           .forEach(el => el.classList.remove("selected"));
-        optionEl.classList.add("selected");
-        optionEl.querySelector("input").checked = true;
+        inputEl.closest(".likert-option").classList.add("selected");
       });
     });
   }
@@ -152,6 +169,7 @@
   const mhlsForm = document.getElementById("mhlsForm");
   const submitBtn = document.getElementById("submitBtn");
   const submitError = document.getElementById("submitError");
+  const mhlsBackBtn = document.getElementById("mhlsBackBtn");
 
   function collectMhlsAnswers() {
     const answers = {};
@@ -172,6 +190,13 @@
   mhlsForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     submitError.classList.add("hidden");
+
+    if (!validateDemographics()) {
+      showBanner("Please complete the background section before submitting.", true);
+      showStep("demographics", 2);
+      setTimeout(hideBanner, 3000);
+      return;
+    }
 
     const { answers, allAnswered } = collectMhlsAnswers();
     if (!allAnswered) {
@@ -215,6 +240,10 @@
       submitBtn.disabled = false;
       submitBtn.textContent = "Submit";
     }
+  });
+
+  mhlsBackBtn.addEventListener("click", () => {
+    showStep("demographics", 2);
   });
 
 })();

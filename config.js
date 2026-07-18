@@ -1,13 +1,3 @@
-/*
-  This file is auto-generated at build time on Vercel (see build.js),
-  which reads SUPABASE_URL and SUPABASE_ANON_KEY from your Vercel
-  Environment Variables and writes them here as plain JS constants.
-
-  For LOCAL testing only, you can temporarily replace the placeholder
-  values below with your real Supabase project URL and anon (public) key.
-  Never put your service_role / secret key here — only the public anon key.
-  Do not commit real values to a public repository; let build.js inject
-  them instead.
-*/
-window.SUPABASE_URL = "YOUR_SUPABASE_URL";
-window.SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+// AUTO-GENERATED at build time by build.js — do not edit directly.
+window.SUPABASE_URL = "https://supabase.com/dashboard/project/asyjejvgymxagrpjiwzc/settings/api-keys";
+window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFzeWplanZneW14YWdycGppd3pjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzODczMjcsImV4cCI6MjA5OTk2MzMyN30.RBsvaFOJpdd0KO5-lWR5BQz0gu5-zuu-z6Uo9xm3ANM";
