@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mental Health Literacy Research Survey</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Progress indicator -->
+    <div class="progress-track" id="progressTrack" aria-hidden="true">
+      <div class="progress-step active" data-step="1">Consent</div>
+      <div class="progress-step" data-step="2">Background</div>
+      <div class="progress-step" data-step="3">Questionnaire</div>
+    </div>
+
+    <!-- ============ STEP 1: CONSENT ============ -->
+    <section class="card" id="step-consent" data-step-panel="1">
+      <h1>Mental Health Literacy among Secondary School Teachers of Dhulikhel Municipality</h1>
+      <p class="subtitle">Kathmandu University School of Medical Sciences, Dhulikhel, Kavre — Informed Consent</p>
+
+      <div class="info-box">
+        <h2>About this study</h2>
+        <p>
+          Namaskar. I am Aakriti Bhatta, a Bachelor of Science in Nursing
+          4th year student from Kathmandu University School of Medical
+          Sciences. I am conducting this research for the partial
+          fulfilment of the degree of Bachelor of Science in Nursing. The
+          purpose of this study is to assess Mental Health Literacy among
+          Secondary School teachers.
+        </p>
+
+        <h2>What you will be asked to do</h2>
+        <p>
+          You will be provided with a self-developed questionnaire for
+          socio-demographic variables and a standard tool called the
+          Mental Health Literacy Scale, consisting of 35 questions. This
+          will take approximately <strong>15–20 minutes</strong> to
+          complete.
+        </p>
+
+        <h2>Benefits and risks</h2>
+        <p>
+          This survey may benefit you by helping assess your level of
+          Mental Health Literacy. You might feel some distress during the
+          survey; if so, you can withdraw at any time without any harm to
+          you.
+        </p>
+
+        <h2>Privacy &amp; confidentiality</h2>
+        <p>
+          Your identity will be kept anonymous. The information you
+          provide will be kept fully confidential and used for the study
+          purpose only.
+        </p>
+
+        <h2>Voluntary participation</h2>
+        <p>
+          Your participation is entirely voluntary. Please consider this
+          information carefully. You are welcome to ask the researcher
+          any questions before deciding whether or not to participate.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Any queries or misunderstandings can be directed to the
+          researcher: Aakriti Bhatta, Bachelor of Science in Nursing,
+          Kathmandu University School of Medical Sciences —
+          <strong>aakritivatta1@gmail.com</strong>.
+        </p>
+      </div>
+
+      <p class="consent-statement">
+        I have read this form and I am aware that I am being asked to
+        participate in a research study. I had the opportunity to ask
+        questions and had them answered to my satisfaction. I voluntarily
+        agree to participate in this research study.
+      </p>
+
+      <div class="consent-options" id="consentOptions">
+        <label class="consent-radio">
+          <input type="radio" name="consentChoice" value="agree" />
+          <span>I agree</span>
+        </label>
+        <label class="consent-radio">
+          <input type="radio" name="consentChoice" value="disagree" />
+          <span>I disagree</span>
+        </label>
+      </div>
+
+      <button type="button" id="consentContinueBtn" class="btn-primary" disabled>
+        Continue
+      </button>
+      <p class="consent-hint" id="consentHint">Please select an option to continue.</p>
+    </section>
+
+    <!-- ============ DECLINED CONSENT SCREEN ============ -->
+    <section class="card hidden" id="step-declined" data-step-panel="declined">
+      <h1>Thank you for your time</h1>
+      <p>
+        You have chosen not to participate in this study. No information
+        has been recorded or submitted. You may close this page at any
+        time.
+      </p>
+    </section>
+
+    <!-- ============ STEP 2: SOCIO-DEMOGRAPHICS ============ -->
+    <section class="card hidden" id="step-demographics" data-step-panel="2">
+      <h1>Background Information</h1>
+      <p class="subtitle">These questions help us understand who took part in this study.</p>
+
+      <form id="demographicsForm" novalidate>
+
+        <div class="field">
+          <label for="age">1. Age (in completed years) <span class="req">*</span></label>
+          <input type="number" id="age" name="age" min="18" max="80" required inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="gender">2. Gender <span class="req">*</span></label>
+          <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="genderOtherField">
+          <label for="gender_other_specify">Please specify</label>
+          <input type="text" id="gender_other_specify" name="gender_other_specify" />
+        </div>
+
+        <div class="field">
+          <label for="academic_degree">3. Academic degree <span class="req">*</span></label>
+          <select id="academic_degree" name="academic_degree" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Bachelor">Bachelor</option>
+            <option value="Masters">Masters</option>
+            <option value="Higher and above">Higher and above</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="teaching_experience">4. Teaching experience <span class="req">*</span></label>
+          <select id="teaching_experience" name="teaching_experience" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="<10 years">&lt; 10 years</option>
+            <option value="≥10 years">&ge; 10 years</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mh_seminar_participation">5. Previous participation in a mental health seminar <span class="req">*</span></label>
+          <select id="mh_seminar_participation" name="mh_seminar_participation" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mh_illness_experience">6. Experience of dealing with someone suffering from a mental illness <span class="req">*</span></label>
+          <select id="mh_illness_experience" name="mh_illness_experience" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="mhIllnessSpecifyField">
+          <label for="mh_illness_experience_specify">If yes, please specify (e.g. relationship — family member, friend, student — no names please)</label>
+          <input type="text" id="mh_illness_experience_specify" name="mh_illness_experience_specify" />
+        </div>
+
+        <button type="button" id="toQuestionnaireBtn" class="btn-primary">Continue</button>
+      </form>
+    </section>
+
+    <!-- ============ STEP 3: MENTAL HEALTH LITERACY SCALE ============ -->
+    <section class="card hidden" id="step-mhls" data-step-panel="3">
+      <h1>Mental Health Literacy Questionnaire</h1>
+      <p class="subtitle">
+        For each statement, choose the option that best reflects your view.
+        There are no right or wrong answers.
+      </p>
+
+      <form id="mhlsForm" novalidate>
+        <div id="mhlsQuestionList"><!-- populated by script.js from mhls-questions.js --></div>
+
+        <button type="submit" id="submitBtn" class="btn-primary">Submit</button>
+        <p class="submit-error hidden" id="submitError">
+          Please answer all questions before submitting.
+        </p>
+      </form>
+    </section>
+
+    <!-- ============ STEP 4: THANK YOU ============ -->
+    <section class="card hidden" id="step-thankyou" data-step-panel="4">
+      <div class="thankyou-icon">✓</div>
+      <h1>Thank you</h1>
+      <p class="subtitle">Your response has been submitted successfully.</p>
+      <p>We appreciate you taking the time to contribute to this research. No further action is needed.</p>
+    </section>
+
+    <!-- Generic loading / error banner -->
+    <div id="statusBanner" class="status-banner hidden"></div>
+
+  </div>
+
+  <!-- Supabase client library (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+  <!-- Config: Supabase URL + public anon key (generated at build time on Vercel, see build.js) -->
+  <script src="config.js"></script>
+
+  <!-- MHLS question bank (edit this file to insert exact question text from your PDF) -->
+  <script src="mhls-questions.js"></script>
+
+  <!-- App logic -->
+  <script src="script.js"></script>
+</body>
+</html>

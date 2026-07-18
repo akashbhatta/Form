@@ -1,0 +1,346 @@
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+  --bg: #F6F7F5;
+  --card-bg: #FFFFFF;
+  --ink: #1E2A26;
+  --ink-soft: #4A5750;
+  --line: #E1E5E1;
+  --accent: #2F6F5E;       /* deep teal — calm, trustworthy, academic */
+  --accent-soft: #E7F0EC;
+  --accent-hover: #255A4C;
+  --error: #B3413B;
+  --radius: 10px;
+  --font-display: "Georgia", "Iowan Old Style", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 18px 64px;
+}
+
+/* ============================================================
+   Progress indicator
+   ============================================================ */
+.progress-track {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 0 4px;
+}
+
+.progress-step {
+  flex: 1;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--line);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.progress-step.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ============================================================
+   Card / sections
+   ============================================================ */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 22px;
+}
+
+.hidden { display: none !important; }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+.subtitle {
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+  font-size: 0.95rem;
+}
+
+h2 {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 18px 0 6px;
+}
+
+.info-box p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin: 0 0 4px;
+}
+
+/* ============================================================
+   Consent
+   ============================================================ */
+.consent-statement {
+  font-size: 0.94rem;
+  font-weight: 500;
+  margin: 24px 0 12px;
+}
+
+.consent-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.consent-radio {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  background: var(--accent-soft);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.94rem;
+  font-weight: 600;
+}
+
+.consent-radio input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.consent-radio:has(input:checked) {
+  border-color: var(--accent);
+  background: #DCEBE4;
+}
+
+@media (max-width: 420px) {
+  .consent-options { flex-direction: column; }
+}
+
+.consent-hint {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ============================================================
+   Form fields
+   ============================================================ */
+.field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.94rem;
+  margin-bottom: 6px;
+}
+
+.req { color: var(--error); }
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fff;
+  color: var(--ink);
+}
+
+input:focus,
+select:focus,
+input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.field.invalid input,
+.field.invalid select {
+  border-color: var(--error);
+}
+
+.field-error {
+  color: var(--error);
+  font-size: 0.82rem;
+  margin-top: 5px;
+  display: none;
+}
+
+.field.invalid .field-error {
+  display: block;
+}
+
+/* ============================================================
+   MHLS Likert questions
+   ============================================================ */
+.mhls-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.mhls-item:first-child { padding-top: 0; }
+
+.mhls-item-number {
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.mhls-item-text {
+  font-size: 0.98rem;
+  margin: 4px 0 12px;
+  font-weight: 500;
+}
+
+.likert-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.likert-option {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-align: center;
+  padding: 9px 4px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+  user-select: none;
+}
+
+.likert-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.likert-option.selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  .likert-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 22px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+
+.btn-primary:disabled {
+  background: #B9C4BF;
+  cursor: not-allowed;
+}
+
+.submit-error {
+  color: var(--error);
+  text-align: center;
+  font-size: 0.88rem;
+  margin-top: 12px;
+}
+
+/* ============================================================
+   Thank you
+   ============================================================ */
+#step-thankyou {
+  text-align: center;
+  padding: 48px 22px;
+}
+
+.thankyou-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+/* ============================================================
+   Status banner (loading / error while submitting)
+   ============================================================ */
+.status-banner {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  max-width: 90%;
+  text-align: center;
+  z-index: 10;
+}
+
+.status-banner.error { background: var(--error); }
+
+/* ============================================================
+   Small screens
+   ============================================================ */
+@media (max-width: 480px) {
+  .card { padding: 22px 16px; }
+  h1 { font-size: 1.3rem; }
+}
